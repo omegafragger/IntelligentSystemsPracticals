@@ -58,29 +58,28 @@ public class SearchUtilities {
         // Loop of the search algorithm
         while(!(frontier.isEmpty())) {
             Node currentNode = frontier.remove();
-            
-            // If we are performing graph search we don't expand a visited state.
-            if (isGraphSearch && visitedStates.contains(currentNode.state)) {
-                continue;
-            }
 
             numNodesExplored++;
-
-            if (isGraphSearch) {
-                visitedStates.add(currentNode.state);
-            }
 
             // If the node has a goal state, return the node as solution
             if (goalTest.isGoal(currentNode.state)) {
                 return getResultMap(currentNode, numNodesExplored);
             }
+
+            if (isGraphSearch) {
+                visitedStates.add(currentNode.state);
+            }
+
             // Else expand the node and add in the new nodes to the frontier
-            else {
-                State currentState = currentNode.state;
-                Set<? extends Action> actions = currentState.getApplicableActions();
-                for (Action action : actions) {
-                    State newState = currentState.getActionResult(action);
-                    Node newNode = new Node(currentNode, action, newState, currentNode.depth + 1);
+            State currentState = currentNode.state;
+            Set<? extends Action> actions = currentState.getApplicableActions();
+            for (Action action : actions) {
+                State newState = currentState.getActionResult(action);
+                Node newNode = new Node(currentNode, action, newState, currentNode.depth + 1);
+                if (isGraphSearch && !(visitedStates.contains(newState))) {
+                    frontier.add(newNode);
+                }
+                if (!isGraphSearch) {
                     frontier.add(newNode);
                 }
             }
