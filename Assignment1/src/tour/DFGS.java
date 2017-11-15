@@ -14,7 +14,7 @@ public class DFGS {
         System.out.println("This is the execution of depth-first graph search on Romania tour problem");
         System.out.println("-----------------------------------------------------------------");
         
-        Cities romania = SetUpRomania.getRomaniaMapSmall();
+        Cities romania = SetUpRomania.getRomaniaMap();
         City startCity = romania.getState("Bucharest");
         
         GoalTest goalTest = new TourGoalTest(romania.getAllCities(), startCity);
