@@ -24,6 +24,10 @@ public class BestFirstFrontier implements Frontier {
         this.nodeFunction = nodeFunction;
     }
 
+    public PriorityQueue<Node> getPriorityQueue() {
+        return this.priorityQueue;
+    }
+    
     /**
      * Method to add a new node to the BestFirstFrontier.
      */

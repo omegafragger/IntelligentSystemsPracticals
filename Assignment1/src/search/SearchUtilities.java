@@ -47,9 +47,11 @@ public class SearchUtilities {
      * @return a map where the first entry corresponds to the goal Node or null
      *         and the second entry contains the number of nodes explored.
      */
+    //TODO: REMOVE THE THROWS EXCEPTION BELOW!!
     public Map<String, Object> search (Node startNode, GoalTest goalTest, Frontier frontier, boolean isGraphSearch) {
         // Initialising the frontier with the start node
         frontier.add(startNode);
+
         int numNodesExplored = 0;
         if (isGraphSearch) {
             visitedStates = new HashSet<>();
@@ -58,7 +60,7 @@ public class SearchUtilities {
         // Loop of the search algorithm
         while(!(frontier.isEmpty())) {
             Node currentNode = frontier.remove();
-
+            
             numNodesExplored++;
 
             // If the node has a goal state, return the node as solution

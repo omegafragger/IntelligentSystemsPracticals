@@ -65,6 +65,7 @@ public class TreeSearch implements Search {
     public Node getSolution(Node startNode, GoalTest goalTest) {
         numNodesExplored = 0;
         Map<String, Object> resultMap = searchUtilities.search(startNode, goalTest, frontier, false);
+       
         numNodesExplored = (Integer) resultMap.get(SearchUtilities.NUMBER_OF_EXPLORED_NODES);
         return (Node) resultMap.get(SearchUtilities.GOAL_NODE);
     }
